@@ -1,7 +1,6 @@
 class MathController < ActionController::Base
   layout('application.html.erb')
 
-
   def add 
   render({ :template => 'math_templates/add.html.erb'})
   end
