@@ -9,7 +9,7 @@ class MathController < ActionController::Base
   def add_results 
     @first = params.fetch('first_num').to_f
     @second = params.fetch('second_num').to_f
-    @result = @first * @second
+    @result = @first + @second
     
   render({ :template => 'math_templates/add_results.html.erb'})
   end
