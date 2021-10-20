@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
 
 def sc_results 
 
-  gmap_api = " https://maps.googleapis.com/maps/api/geocode/json?address=Merchandise%20Mart%20Chicago&key=REPLACE_THIS_QUERY_STRING_PARAMETER_WITH_YOUR_API_TOKEN"
+  street_address = params.fetch('street_input')
+
+  gmaps_token = ENV.fetch("GMAPS_TOKEN") 
+  #make the ENV variable save the key token info to your environment  in Gitpod
+  gmap_api = " https://maps.googleapis.com/maps/api/geocode/json?address=#{street_address}&key=#{gmaps_token}"
 
   @raw_data = open(gmap_api).read 
   @parsed_data = JSON.parse(@raw_data) 
@@ -16,7 +20,7 @@ def sc_results
   @lng = @loc.fetch('lng')
 
 
-  render ({ :template => 'weather_templates/geo_results'})
+  render ({ :template => 'api_templates/sc_results'})
 
 end 
 
